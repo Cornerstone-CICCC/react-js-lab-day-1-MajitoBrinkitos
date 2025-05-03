@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import styles from '../modules/UserForm.module.scss'
 import { User } from '../types/User'
 
 interface Props {
@@ -10,38 +10,48 @@ interface Props {
 
 const UserForm: React.FC<Props> = ({ formData, setFormData, saveUser, clearForm}) => {
     return (
-        <form>
-            {/*Full Name */}
-            <input type="text" value={formData.fullname} onChange={(e) => setFormData({
-                ...formData, fullname: e.target.value
-            })} placeholder='Full Name'/>
+        <form className={styles.form}>
+            <div className={styles.info}>
+                {/*Full Name */}
+                <label>
+                    Fullname: <input type="text" value={formData.fullname} onChange={(e) => setFormData({
+                        ...formData, fullname: e.target.value
+                    })} placeholder='Full Name'/>
+                </label>
 
-            {/*Age */}
-            <input type="number" value={formData.age} onChange={(e) => setFormData({
-                ...formData, age: Number(e.target.value)
-            })} placeholder='Age' />
+                {/*Age */}
+                <label>
+                    Age: <input type="number" value={formData.age} onChange={(e) => setFormData({
+                    ...formData, age: Number(e.target.value)
+                    })} placeholder='Age' />
+                </label>
+            </div>
 
             {/*Education */}
-            <select value={formData.education} onChange={(e) => setFormData({
-                ...formData, education: e.target.value
-            }) } >
-                <option value="">Select Education</option>
-                <option value="College">College/University</option>
-                <option value="Diploma">Diploma/Certification</option>
-                <option value="High School">High School</option>
-            </select>
+            <div className={styles.info}>
+                <label> Education: </label>
+                    <select value={formData.education} onChange={(e) => setFormData({
+                    ...formData, education: e.target.value
+                    }) } >
+                    <option value="">Select Education</option>
+                    <option value="College">College/University</option>
+                    <option value="Diploma">Diploma/Certification</option>
+                    <option value="High School">High School</option>
+                    </select>
+            </div>
+                    
 
             {/*Gender */}
-            <div>
+            <div className={styles.gender}>
                 <label>Gender:</label>
-                <input type="radio" name="gender" value="Male" onChange={(e) => setFormData({
+                <input className={styles.inline} type="radio" name="gender" value="Male" onChange={(e) => setFormData({
                     ...formData, gender: e.target.value
                 })} /> Male
-                <input type="radio" name="gender" value="Feminine" onChange={(e) => setFormData({
+                <input className={styles.inline} type="radio" name="gender" value="Feminine" onChange={(e) => setFormData({
                     ...formData, gender: e.target.value
                 })} /> Feminine
             </div>
-
+                
             {/*Skills */}
             <div>
                 <label>Skills:</label>
