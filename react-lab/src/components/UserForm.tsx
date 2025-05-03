@@ -11,19 +11,21 @@ interface Props {
 const UserForm: React.FC<Props> = ({ formData, setFormData, saveUser, clearForm}) => {
     return (
         <form className={styles.form}>
+            {/*Title */}
+            <h1>Welcome</h1>
             <div className={styles.info}>
                 {/*Full Name */}
                 <label>
                     Fullname: <input type="text" value={formData.fullname} onChange={(e) => setFormData({
                         ...formData, fullname: e.target.value
-                    })} placeholder='Full Name'/>
+                    })} placeholder='First Name, Last Name'/>
                 </label>
 
                 {/*Age */}
                 <label>
                     Age: <input type="number" value={formData.age} onChange={(e) => setFormData({
                     ...formData, age: Number(e.target.value)
-                    })} placeholder='Age' />
+                    })} placeholder='0-99' />
                 </label>
             </div>
 
@@ -53,8 +55,8 @@ const UserForm: React.FC<Props> = ({ formData, setFormData, saveUser, clearForm}
             </div>
                 
             {/*Skills */}
-            <div>
-                <label>Skills:</label>
+            <div className={styles.skills}>
+                <h5 className={styles.title}>Skills</h5>
                 {["HTML", "CSS", "JavaScript", "Astro", "PostgreSQL", "React"].map(skill => (
                     <label key={skill}>
                         <input type="checkbox" checked={formData.skills.includes(skill)} onChange={(e) => setFormData({...formData, skills: e.target.checked ? [...formData.skills, skill] : formData.skills.filter(s => s !== skill)}) 
